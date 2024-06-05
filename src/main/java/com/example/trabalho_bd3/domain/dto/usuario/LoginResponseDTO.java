@@ -2,19 +2,18 @@ package com.example.trabalho_bd3.domain.dto.usuario;
 
 public class LoginResponseDTO {
     private String token;
-    private UsuarioResponseDTO usuarioResponseDTO;
-
+    private UsuarioResponseDTO usuario;
+    
     public String getToken() {
         return token;
     }
     public void setToken(String token) {
         this.token = token;
     }
-    public UsuarioResponseDTO getUsuarioResponseDTO() {
-        return usuarioResponseDTO;
+    public UsuarioResponseDTO getUsuario() {
+        return usuario;
     }
-    public void setUsuarioResponseDTO(UsuarioResponseDTO usuarioResponseDTO) {
-        this.usuarioResponseDTO = usuarioResponseDTO;
+    public void setUsuario(UsuarioResponseDTO usuario) {
+        this.usuario = usuario;
     }
 }
-
