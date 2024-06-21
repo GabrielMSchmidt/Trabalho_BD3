@@ -82,7 +82,9 @@ private BCryptPasswordEncoder bCryptPasswordEncoder;
           }
         Usuario usuario = mapper
        .map(dto, Usuario.class);
-       usuario.setSenha(dto.getSenha());
+       //Criptografar Senha
+       String senha = bCryptPasswordEncoder.encode(usuario.getSenha());
+       usuario.setSenha(senha);
        usuario.setId(id);
        usuario.setDataCadastro(usuarioBanco.getDataCadastro());
        usuario.setDataInativacao(usuarioBanco.getDataInativacao());
