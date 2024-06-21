@@ -30,9 +30,6 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Date dataCadastro;
     private Date dataInativacao;
-    @OneToMany(mappedBy = "usuario")
-    private List<Carro> carros;
-    
 
     public Long getId() {
         return id;
@@ -81,12 +78,6 @@ public class Usuario implements UserDetails {
     }
     public void setDataInativacao(Date dataInativacao) {
         this.dataInativacao = dataInativacao;
-    }
-    public List<Carro> getCarros() {
-        return carros;
-    }
-    public void setCarros(List<Carro> carros) {
-        this.carros = carros;
     }
     
     /* Métodos da Interface UserDetails do SpringBoot */

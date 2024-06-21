@@ -38,7 +38,7 @@ public class CarroService implements ICRUDService<CarroRequestDTO, CarroResponse
         }
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(optCarro.get().getUsuario().getId() != usuario.getId()){
-            throw new ResourceNotFoundException("O Carro com o id: " + id + "não pertence a esse Usuário");
+            throw new ResourceNotFoundException("O Carro com o id " + id + " não existe.");
         }
         return mapper.map(optCarro.get(), CarroResponseDTO.class);
     }
