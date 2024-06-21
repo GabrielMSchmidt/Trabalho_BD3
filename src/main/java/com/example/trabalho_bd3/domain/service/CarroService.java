@@ -25,24 +25,22 @@ public class CarroService implements ICRUDService<CarroRequestDTO, CarroResponse
 
     @Override
     public List<CarroResponseDTO> obterTodos() {
-        Usuario usuario = (Usuario) SecurityContextHolder
-       .getContext().getAuthentication().getPrincipal();
-       List<Carro> lista = carroRepository.findByUsuario(usuario);
-       return lista.stream().map(carro -> mapper.map(carro, CarroResponseDTO.class)).collect(Collectors.toList());
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Carro> lista = carroRepository.findByUsuario(usuario);
+        return lista.stream().map(carro -> mapper.map(carro, CarroResponseDTO.class)).collect(Collectors.toList());
     }
 
     @Override
     public CarroResponseDTO obterPorId(Long id) {
         Optional<Carro> optCarro = carroRepository.findById(id);
-       if(optCarro.isEmpty()){
-        throw new ResourceNotFoundException("Não foi possível encontrar o Carro com o id: " + id);
-       }
-       Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       if(optCarro.get().getUsuario().getId() != usuario.getId()){
-            throw new ResourceNotFoundException("O Carro com o id: " +
-            id + "não pertence a esse Usuário");
-       }
-       return mapper.map(optCarro.get(), CarroResponseDTO.class);
+        if(optCarro.isEmpty()){
+            throw new ResourceNotFoundException("Não foi possível encontrar o Carro com o id: " + id);
+        }
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(optCarro.get().getUsuario().getId() != usuario.getId()){
+            throw new ResourceNotFoundException("O Carro com o id: " + id + "não pertence a esse Usuário");
+        }
+        return mapper.map(optCarro.get(), CarroResponseDTO.class);
     }
 
     @Override

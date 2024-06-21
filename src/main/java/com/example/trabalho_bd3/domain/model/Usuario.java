@@ -1,6 +1,7 @@
 package com.example.trabalho_bd3.domain.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -28,6 +30,8 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Date dataCadastro;
     private Date dataInativacao;
+    @OneToMany(mappedBy = "usuario")
+    private List<Carro> carros;
     
 
     public Long getId() {
@@ -36,49 +40,55 @@ public class Usuario implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
     public String getSenha() {
         return senha;
     }
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
+    
     public String getFoto() {
         return foto;
     }
     public void setFoto(String foto) {
         this.foto = foto;
     }
-
+    
     public Date getDataCadastro() {
         return dataCadastro;
     }
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-
+    
     public Date getDataInativacao() {
         return dataInativacao;
     }
     public void setDataInativacao(Date dataInativacao) {
         this.dataInativacao = dataInativacao;
     }
-
+    public List<Carro> getCarros() {
+        return carros;
+    }
+    public void setCarros(List<Carro> carros) {
+        this.carros = carros;
+    }
+    
     /* Métodos da Interface UserDetails do SpringBoot */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

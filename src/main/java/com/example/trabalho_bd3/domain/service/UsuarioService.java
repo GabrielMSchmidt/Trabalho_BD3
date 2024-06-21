@@ -30,23 +30,17 @@ private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public List<UsuarioResponseDTO> obterTodos() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        return usuarios.stream().map(usuario -> mapper.map(
-            usuario, UsuarioResponseDTO.class))
-            .collect(Collectors.toList());
+      List<Usuario> usuarios = usuarioRepository.findAll();
+      return usuarios.stream().map(usuario -> mapper.map(usuario, UsuarioResponseDTO.class)).collect(Collectors.toList());
     }
 
     @Override
     public UsuarioResponseDTO obterPorId(Long id) {
-        Optional<Usuario> optUsuario = 
-                usuarioRepository.findById(id);
+        Optional<Usuario> optUsuario = usuarioRepository.findById(id);
         if(optUsuario.isEmpty()){
-           throw new ResourceNotFoundException
-           ("não foi possível encontar o usuário com o id" +
-           id);
+          throw new ResourceNotFoundException("não foi possível encontar o usuário com o id" + id);
         }
-        return mapper.map(optUsuario.get(), 
-        UsuarioResponseDTO.class);
+        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
     @Override
